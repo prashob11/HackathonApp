@@ -5,7 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="com.smu.residencemanagement.SignUp"
-        android:background="#FF5722"
+        android:background="#5882d1"
         android:padding="20dp">
 
     <TextView
