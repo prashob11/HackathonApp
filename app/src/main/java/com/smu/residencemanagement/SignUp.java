@@ -45,6 +45,7 @@ public class SignUp extends AppCompatActivity {
 
                 // Checking whether EditText is Empty or Not
                 CheckEditTextIsEmptyOrNot();
+                gotoRegisterSuccessful(view);
 
                 if(CheckEditText){
 
@@ -60,7 +61,6 @@ public class SignUp extends AppCompatActivity {
 
                 }
 
-
             }
         });
 
@@ -74,6 +74,10 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
+    }
+    public void gotoRegisterSuccessful(View view){
+        Intent intent = new Intent(this, RegisterSuccessful.class);
+        startActivity(intent);
     }
 
     public void CheckEditTextIsEmptyOrNot(){
