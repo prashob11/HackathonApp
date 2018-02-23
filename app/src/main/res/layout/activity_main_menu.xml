@@ -6,16 +6,20 @@
     android:layout_height="match_parent"
     tools:context="com.smu.residencemanagement.MainMenu">
 
+
     <RelativeLayout
-        android:layout_width="344dp"
+        android:layout_width="275dp"
         android:layout_height="495dp"
-        tools:layout_editor_absoluteX="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="8dp">
 
         <Button
             android:id="@+id/button1"
-            android:layout_width="250dp"
-            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_centerInParent="false"
@@ -25,8 +29,8 @@
 
         <Button
             android:id="@+id/button2"
-            android:layout_width="250dp"
-            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignStart="@+id/button1"
             android:layout_below="@+id/button1"
             android:layout_marginTop="20dp"
@@ -34,8 +38,8 @@
 
         <Button
             android:id="@+id/button3"
-            android:layout_width="250dp"
-            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignStart="@+id/button2"
             android:layout_below="@+id/button2"
             android:layout_marginTop="20dp"
@@ -43,8 +47,8 @@
 
         <Button
             android:id="@+id/button4"
-            android:layout_width="250dp"
-            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignStart="@+id/button3"
             android:layout_below="@+id/button3"
             android:layout_marginTop="20dp"
@@ -57,7 +61,9 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="70dp"
-            android:text="Main Menu" />
+            android:text="Main Menu"
+            android:textAppearance="@style/TextAppearance.AppCompat.Menu"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
