@@ -20,10 +20,13 @@
         </activity>
         <activity android:name=".SignUp" />
         <activity android:name=".RegisterSuccessful" />
-        <activity android:name="MainMenu" />
+        <activity android:name=".MainMenu" />
         <activity android:name=".BookFacility" />
         <activity android:name=".UpcomingBookings" />
-        <activity android:name=".ReservationActivity"></activity>
+        <activity android:name=".ReservationActivity" />
+        <activity android:name=".BookingSummaryActivity" />
+        <activity android:name=".ContactManagementActivity" />
+        <activity android:name=".ManagementAckActivity"></activity>
     </application>
 
 </manifest>
