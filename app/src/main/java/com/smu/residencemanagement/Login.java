@@ -34,6 +34,7 @@ public class Login extends AppCompatActivity {
         Password = findViewById(R.id.password);
         LogIn = findViewById(R.id.Login);
 
+
         LogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,15 +58,13 @@ public class Login extends AppCompatActivity {
 
     public void goToSignup(View view){
 
+                Intent intent = new Intent(Login.this, SignUp.class);
 
 
-                    Intent intent = new Intent(Login.this, SignUp.class);
-
-
-                    startActivity(intent);
-
+                startActivity(intent);
 
     }
+
     public void CheckEditTextIsEmptyOrNot(){
 
         EmailHolder = Email.getText().toString();
