@@ -20,6 +20,7 @@
         </activity>
         <activity android:name=".SignUp" />
         <activity android:name=".ReservationActivity" />
+        <activity android:name=".RegisterSuccessful" />
         <activity android:name=".MainMenu"></activity>
     </application>
 
