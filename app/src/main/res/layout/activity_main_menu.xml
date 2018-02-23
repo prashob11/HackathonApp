@@ -14,10 +14,11 @@
         android:layout_marginStart="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="8dp">
+        tools:layout_editor_absoluteY="8dp"
+        tools:ignore="MissingConstraints">
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/buttonBookFacility"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -25,37 +26,39 @@
             android:layout_centerInParent="false"
             android:layout_centerVertical="false"
             android:layout_marginTop="153dp"
-            android:text="Book a Facility" />
+            android:text="Book a Facility"
+            android:onClick="goToBookFacility"/>
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/buttonUpcomingBookings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/button1"
-            android:layout_below="@+id/button1"
+            android:layout_alignStart="@+id/buttonBookFacility"
+            android:layout_below="@+id/buttonBookFacility"
             android:layout_marginTop="20dp"
-            android:text="Upcoming Bookings" />
+            android:text="Upcoming Bookings"
+            android:onClick="goToUpcomingBookings"/>
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/buttonChatForum"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/button2"
-            android:layout_below="@+id/button2"
+            android:layout_alignStart="@+id/buttonUpcomingBookings"
+            android:layout_below="@+id/buttonUpcomingBookings"
             android:layout_marginTop="20dp"
             android:text="Chat Forum" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/buttonContactManagement"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/button3"
-            android:layout_below="@+id/button3"
+            android:layout_alignStart="@+id/buttonChatForum"
+            android:layout_below="@+id/buttonChatForum"
             android:layout_marginTop="20dp"
             android:text="Contact Management" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textViewMainMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"

@@ -21,6 +21,8 @@
         <activity android:name=".SignUp" />
         <activity android:name=".RegisterSuccessful" />
         <activity android:name="MainMenu" />
+        <activity android:name=".BookFacility" />
+        <activity android:name=".UpcomingBookings" />
         <activity android:name=".ReservationActivity"></activity>
     </application>
 
