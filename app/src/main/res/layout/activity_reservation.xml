@@ -4,6 +4,242 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.smu.residencemanagement.ReservationActivity">
+    tools:context="com.smu.residencemanagement.ReservationActivity"
+    android:id="@+id/relativeLayout">
+
+    <EditText
+        android:id="@+id/in_date"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="13dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="SELECT DATE"
+        app:layout_constraintBaseline_toBaselineOf="@+id/in_date"
+        app:layout_constraintBottom_toBottomOf="@+id/in_date"
+        app:layout_constraintStart_toEndOf="@+id/in_date" />
+
+    <Button
+        android:id="@+id/button22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 6:00 AM - 7:00 AM "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.100000024" />
+
+    <Button
+        android:id="@+id/button23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 7:00 AM - 8:00 AM "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <Button
+        android:id="@+id/button24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 8:00 AM - 9:00 AM "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <Button
+        android:id="@+id/button25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 9:00 AM -10:00AM"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4" />
+
+    <Button
+        android:id="@+id/button26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10:00AM-11:00AM"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <Button
+        android:id="@+id/button27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="11:00AM-12:00PM"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.6" />
+
+    <Button
+        android:id="@+id/button28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12:00 PM -1:00PM "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.7" />
+
+    <Button
+        android:id="@+id/button29"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 1:00 PM - 2:00 PM "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8" />
+
+    <Button
+        android:id="@+id/button30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 2:00 PM - 3:00 PM "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.9" />
+
+    <Button
+        android:id="@+id/button31"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 3:00 PM - 4:00 PM "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.100000024" />
+
+    <Button
+        android:id="@+id/button32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 4:00 PM - 5:00 PM "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <Button
+        android:id="@+id/button33"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 5:00 PM - 6:00 PM "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <Button
+        android:id="@+id/button34"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 6:00 PM - 7:00 PM "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4" />
+
+    <Button
+        android:id="@+id/button35"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 7:00 PM - 8:00 PM "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <Button
+        android:id="@+id/button36"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 8:00 PM - 9:00 PM "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.6" />
+
+    <Button
+        android:id="@+id/button37"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 9:00 PM -10:00PM"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.7" />
+
+    <Button
+        android:id="@+id/button38"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10:00PM-11:00AM"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8" />
+
+    <Button
+        android:id="@+id/button39"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="11:00AM-12:00AM"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.9" />
 
 </android.support.constraint.ConstraintLayout>
