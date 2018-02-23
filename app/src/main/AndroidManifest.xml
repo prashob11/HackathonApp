@@ -26,7 +26,9 @@
         <activity android:name=".ReservationActivity" />
         <activity android:name=".BookingSummaryActivity" />
         <activity android:name=".ContactManagementActivity" />
-        <activity android:name=".ManagementAckActivity"></activity>
+        <activity android:name=".ManagementAckActivity" />
+        <activity android:name=".SwapRequestForm">
+        </activity>
     </application>
 
 </manifest>

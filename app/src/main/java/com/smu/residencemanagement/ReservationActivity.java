@@ -13,7 +13,7 @@ import android.widget.TextView;
 import java.util.Calendar;
 
 public class ReservationActivity extends AppCompatActivity implements
-        View.OnClickListener  {
+        View.OnClickListener {
 
     Button btnDatePicker;
     EditText txtDate;
@@ -23,11 +23,11 @@ public class ReservationActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservation);
-        Intent intent=getIntent();
+        Intent intent = getIntent();
         String activityType = "Reserve a slot for " + intent.getStringExtra("activityType");
-        ((TextView)findViewById(R.id.tvMessage)).setText(activityType);
-        btnDatePicker=(Button)findViewById(R.id.btn_date);
-        txtDate=(EditText)findViewById(R.id.in_date);
+        ((TextView) findViewById(R.id.tvMessage)).setText(activityType);
+        btnDatePicker = (Button) findViewById(R.id.btn_date);
+        txtDate = (EditText) findViewById(R.id.in_date);
         btnDatePicker.setOnClickListener(this);
 
     }
@@ -58,4 +58,5 @@ public class ReservationActivity extends AppCompatActivity implements
             datePickerDialog.show();
         }
     }
+
 }
