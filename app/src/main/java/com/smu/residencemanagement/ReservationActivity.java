@@ -1,16 +1,12 @@
 package com.smu.residencemanagement;
 
 import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TimePicker;
 import java.util.Calendar;
 
 public class ReservationActivity extends AppCompatActivity implements
