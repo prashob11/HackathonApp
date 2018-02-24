@@ -25,7 +25,7 @@ public class SwapRequestForm extends AppCompatActivity {
     //    addlisternerOnyesButton();
     }
 
-  /*  private void addlisternerOnyesButton() {
+  /*/  private void addlisternerOnyesButton() {
         yesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
