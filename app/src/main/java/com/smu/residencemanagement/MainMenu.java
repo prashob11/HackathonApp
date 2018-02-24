@@ -24,14 +24,6 @@ public class MainMenu extends AppCompatActivity {
 
     }
 
-    /*public void goToUpcomingBookings(View view){
-
-        Intent intent = new Intent(MainMenu.this, UpcomingBookings.class);
-
-        startActivity(intent);
-
-    }
-*/
     public void goToUpcomingBookings(View view){
 
         Intent intent = new Intent(MainMenu.this, SwapRequestForm.class);
