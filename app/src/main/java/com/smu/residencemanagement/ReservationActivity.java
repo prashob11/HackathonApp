@@ -1,8 +1,10 @@
 package com.smu.residencemanagement;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 import android.util.Log;
 import java.util.*;
 import android.view.View.OnClickListener;
+import android.widget.Toast;
 
 public class ReservationActivity extends AppCompatActivity implements
         View.OnClickListener {
@@ -23,7 +26,11 @@ public class ReservationActivity extends AppCompatActivity implements
     EditText txtDate;
     private int mYear, mMonth, mDay;
     Intent intent;
-
+    ProgressDialog progressDialog;
+    HashMap<String,String> hashMap = new HashMap<>();
+    String finalResult ;
+    HttpParse httpParse = new HttpParse();
+    String HttpURL = "http://dev.cs.smu.ca/~n_akash/ResidenceManagement/UserRegistration.php";
 
 
     @Override
@@ -55,6 +62,11 @@ public class ReservationActivity extends AppCompatActivity implements
         for(String buttonId: buttonIdArray){
             resId= getResources().getIdentifier(buttonId, "id",getPackageName());
             timeButton=(Button) findViewById(resId);
+            Log.d("Timeslot:",buttonId);
+
+            Log.d("Facility",  intent.getStringExtra("activityType"));
+            //Log.d("UserEmail",  Login.UserEmail);
+
             //For swap
             //Log.d("Booked event time:","Hi ");
             if(bookedEventTimes.contains(buttonId)){
@@ -106,7 +118,7 @@ public class ReservationActivity extends AppCompatActivity implements
                         public void onDateSet(DatePicker view, int year,
                                               int monthOfYear, int dayOfMonth) {
 
-                            txtDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                            txtDate.setText(year+"-"+dayOfMonth + "-" + (monthOfYear + 1) );
 
                         }
                     }, mYear, mMonth, mDay);
@@ -115,7 +127,7 @@ public class ReservationActivity extends AppCompatActivity implements
     }
 
     private void showAlert(final String swapOrBook) {
-
+        Log.d("Date of booking:", txtDate.getText().toString());
         Log.d("Inside Alter",swapOrBook);
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(swapOrBook)
@@ -146,5 +158,50 @@ public class ReservationActivity extends AppCompatActivity implements
         AlertDialog alert = builder.create();
         alert.show();
     }
+    public void BookingFunction(final String timeSlot, final String email, final String facility, final String dateOfBooking){
 
+        class BookingFunctionClass extends AsyncTask<String,Void,String> {
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+
+                progressDialog = ProgressDialog.show(ReservationActivity.this,"Loading Data",null,true,true);
+            }
+
+            @Override
+            protected void onPostExecute(String httpResponseMsg) {
+
+                super.onPostExecute(httpResponseMsg);
+
+                progressDialog.dismiss();
+
+                Toast.makeText(ReservationActivity.this,httpResponseMsg.toString(), Toast.LENGTH_LONG).show();
+
+            }
+
+            @Override
+            protected String doInBackground(String... params) {
+
+                hashMap.put("timeSlot",params[0]);
+
+                hashMap.put("email",params[1]);
+
+                hashMap.put("facility",params[2]);
+
+                hashMap.put("dateOfBooking",params[3]);
+
+                finalResult = httpParse.postRequest(hashMap, HttpURL);
+
+                Log.d("signin" , params[0]);
+
+
+                return finalResult;
+            }
+        }
+
+        BookingFunctionClass bookingFunctionClass = new BookingFunctionClass();
+
+        bookingFunctionClass.execute(timeSlot,email,facility,dateOfBooking);
+    }
 }
