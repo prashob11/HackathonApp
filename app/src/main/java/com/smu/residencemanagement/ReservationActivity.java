@@ -1,7 +1,9 @@
 package com.smu.residencemanagement;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,9 +22,13 @@ public class ReservationActivity extends AppCompatActivity implements
     Button timeButton;
     EditText txtDate;
     private int mYear, mMonth, mDay;
+    Intent intent;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservation);
         Intent intent = getIntent();
@@ -34,29 +40,32 @@ public class ReservationActivity extends AppCompatActivity implements
         String[] buttonIdArray={"button6AM7AM",	"button7AM8AM",	"button8AM9AM",	"button9AM10AM",	"button10AM11AM",	"button11AM12PM",	"button12PM1PM",	"button1PM2PM",	"button2PM3PM",	"button3PM4PM",	"button4PM5PM",	"button5PM6PM",	"button6PM7PM",	"button7PM8PM",	"button8PM9PM",	"button9PM10PM",	"button10PM11PM",	"button11PM12AM"};
 
 
-        ArrayList<String> bookedEventTimes = intent.getStringArrayListExtra("bookedEvents");
-        Log.d("Booked event time:","Hi ");
+        ArrayList<String> bookedEventTimes = getIntent().getStringArrayListExtra("bookedEvents");
+        //Log.d("Booked event time:","Hi ");
         int resId;
 
-        for(String s: bookedEventTimes){
-            Log.d("Id of button",Integer.toString(R.id.button5PM6PM) );
+        //Log.d("SIZE:", Integer.toString(bookedEventTimes.size()));
+
+        /*for(String s: bookedEventTimes){
+            //Log.d("Id of button",Integer.toString(R.id.button5PM6PM) );
             Log.d("Booked event time:", s);
-        }
+        }*/
 
         //Log.d("IdName of button", Integer.toString (resId));
         for(String buttonId: buttonIdArray){
             resId= getResources().getIdentifier(buttonId, "id",getPackageName());
             timeButton=(Button) findViewById(resId);
             //For swap
-            Log.d("Booked event time:","Hi ");
+            //Log.d("Booked event time:","Hi ");
             if(bookedEventTimes.contains(buttonId)){
                 timeButton.setOnClickListener(new OnClickListener()
                 {
                     public void onClick(View v)
                     {
-                        Intent intent = new Intent(ReservationActivity .this, SwapRequestForm.class);
-                        startActivity(intent);
-                        Log.d("Inside Swap","inside swap");
+                        /*Intent intent = new Intent(ReservationActivity .this, SwapRequestForm.class);
+                        startActivity(intent);*/
+                        //Log.d("Inside Swap","inside swap");
+                        showAlert("Are you sure you want to ask for swapping?");
                     }
                 });
             }
@@ -66,9 +75,10 @@ public class ReservationActivity extends AppCompatActivity implements
                 {
                     public void onClick(View v)
                     {
-                        Intent intent = new Intent(ReservationActivity .this, BookingSummaryActivity.class);
-                        startActivity(intent);
-                        Log.d("Inside create","inside create");
+                        showAlert("Are you sure you want to book this slot?");
+                        //Intent intent = new Intent(ReservationActivity .this, BookingSummaryActivity.class);
+                        //startActivity(intent);
+                        //Log.d("Inside create","inside create");
                     }
                 });
             }
@@ -102,6 +112,39 @@ public class ReservationActivity extends AppCompatActivity implements
                     }, mYear, mMonth, mDay);
             datePickerDialog.show();
         }
+    }
+
+    private void showAlert(final String swapOrBook) {
+
+        Log.d("Inside Alter",swapOrBook);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(swapOrBook)
+                .setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                                if(swapOrBook.equals("Are you sure you want to book this slot?")){
+
+                                     intent = new Intent(ReservationActivity .this, BookingSummaryActivity.class);
+                                }
+                                else
+                                {
+                                     intent = new Intent(ReservationActivity .this, SwapRequestForm.class);
+
+                                }
+                                startActivity(intent);
+                            }
+                        })
+                .setNegativeButton("No",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                /*Intent intent = new Intent(ReservationActivity .this, BookingSummaryActivity.class);
+                                startActivity(intent);*/
+                                dialog.cancel();
+                            }
+                        });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
 }

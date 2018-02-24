@@ -44,44 +44,49 @@ public class BookFacility extends AppCompatActivity {
 
             case R.id.buttonGym:
                 intent.putExtra("activityType","Gym");
-                activityType="KITCHEN";
+                activityType="GYM";
                 break;
             case R.id.buttonDryer:
                 intent.putExtra("activityType","Dryer");
-                activityType="KITCHEN";
+                activityType="DRYER";
                 break;
             case R.id.buttonStudyRoom:
                 intent.putExtra("activityType","Study Room");
-                activityType="KITCHEN";
+                activityType="STUDYROOM";
                 break;
             case R.id.buttonBathroom:
                 intent.putExtra("activityType","Bathroom");
-                activityType="KITCHEN";
+                activityType="BATHROOM";
                 break;
             case R.id.buttonWasher:
                 intent.putExtra("activityType","Washer");
-                activityType="KITCHEN";
+                activityType="WASHER";
                 break;
             case R.id.buttonCommonRoom:
                 intent.putExtra("activityType","Common Room");
-                activityType="KITCHEN";
+                activityType="COMMONROOM";
                 break;
             case R.id.buttonPlayRoom:
                 intent.putExtra("activityType","Play Room");
-                activityType="KITCHEN";
+                activityType="PLAYROOM";
                 break;
             default:Log.d("myTag", "I am Out of here");
                 intent.putExtra("activityType","Nothing");
-                activityType="KITCHEN";
+                activityType="NOTHING";
                  break;
         }
         getBookingDetail(activityType);
-        intent.putExtra("bookedEvents", bookedEvents);
-        startActivity(intent);
+        Log.d("For Testing Size",Integer.toString(bookedEvents.size()));
+        for(String s: bookedEvents){
+            Log.d("For Testing", s);
+        }
+        intent.putStringArrayListExtra("bookedEvents", bookedEvents);
+
+
     }
 
     public void getBookingDetail(final String activityType){
-        class BookingDetailFunctionClass extends AsyncTask<String,Void,String> {
+        class BookingDetailFunctionClass extends AsyncTask<String,String,String> {
 
             @Override
             protected void onPreExecute() {
@@ -111,13 +116,16 @@ public class BookFacility extends AppCompatActivity {
                 for(String s:bookedEvents){
                     Log.d("List",s);
                 }
+                intent.putStringArrayListExtra("bookedEvents", bookedEvents);
                // Intent intent = new Intent(BookFacility.this, ReservationActivity.class);
+                startActivity(intent);
             }
 
             @Override
             protected String doInBackground(String... params) {
 
                 hashMap.put("facilityName",params[0]);
+                //hashMap.put("bookedEvents",params[1]);
                 finalResult = httpParse.postRequest(hashMap, HttpURL);
 
                 Log.d("Activity" , params[0]);
