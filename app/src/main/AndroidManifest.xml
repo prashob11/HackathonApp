@@ -3,6 +3,7 @@
     package="com.smu.residencemanagement">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -19,7 +20,16 @@
             </intent-filter>
         </activity>
         <activity android:name=".SignUp" />
-        <activity android:name=".ReservationActivity"></activity>
+        <activity android:name=".RegisterSuccessful" />
+        <activity android:name=".MainMenu" />
+        <activity android:name=".BookFacility" />
+        <activity android:name=".UpcomingBookings" />
+        <activity android:name=".ReservationActivity" />
+        <activity android:name=".BookingSummaryActivity" />
+        <activity android:name=".ContactManagementActivity" />
+        <activity android:name=".ManagementAckActivity" />
+        <activity android:name=".SwapRequestForm">
+        </activity>
     </application>
 
 </manifest>

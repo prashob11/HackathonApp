@@ -95,11 +95,11 @@ public class Login extends AppCompatActivity {
 
                     finish();
 
-//                    Intent intent = new Intent(Login.this, DashboardActivity.class);
-//
+                    Intent intent = new Intent(Login.this, MainMenu.class);
+
 //                    intent.putExtra(UserEmail,email);
 
-//                    startActivity(intent);
+                    startActivity(intent);
 
                 }
                 else{

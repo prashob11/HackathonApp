@@ -88,6 +88,6 @@
         android:layout_below="@+id/Submit"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
-        android:text="Already Register | Log In Here" />
+        android:text="Already Registered? | Log In Here" />
 
 </RelativeLayout>
