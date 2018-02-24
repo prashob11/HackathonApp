@@ -33,6 +33,7 @@
             android:id="@+id/newmsg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="gotoMessages"
             android:text="Add New Message" />
 
         <ListView

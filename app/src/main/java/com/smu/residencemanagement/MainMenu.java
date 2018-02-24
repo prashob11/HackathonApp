@@ -40,4 +40,12 @@ public class MainMenu extends AppCompatActivity {
 
     }
 
+    public void goToChatForum(View view){
+
+        Intent intent = new Intent(MainMenu.this, ChatForum.class);
+
+        startActivity(intent);
+
+    }
+
 }
