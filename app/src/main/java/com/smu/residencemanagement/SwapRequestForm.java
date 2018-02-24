@@ -1,12 +1,14 @@
 package com.smu.residencemanagement;
 
 import android.content.Intent;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.util.Log;
+import android.widget.Toast;
+
 
 public class SwapRequestForm extends AppCompatActivity {
 
@@ -20,10 +22,10 @@ public class SwapRequestForm extends AppCompatActivity {
 
         messageBody = findViewById(R.id.editTextMessageBody);
         yesButton = findViewById(R.id.buttonSwapYes);
-        addlisternerOnyesButton();
+    //    addlisternerOnyesButton();
     }
 
-    private void addlisternerOnyesButton() {
+  /*  private void addlisternerOnyesButton() {
         yesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,5 +44,18 @@ public class SwapRequestForm extends AppCompatActivity {
                 startActivity(email);
             }
         });
-    }
+    }*/
+
+
+     public void sendMail(View view) {
+            try {
+
+                LongOperation l=new LongOperation();
+                l.execute();  //sends the email in background
+                Toast.makeText(this, l.get(), Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                Log.e("SendMail", e.getMessage(), e);
+
+            }
+     }
 }

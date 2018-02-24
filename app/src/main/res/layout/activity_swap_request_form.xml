@@ -28,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="32dp"
+        android:onClick="sendMail"
         android:text="Yes"
         app:layout_constraintEnd_toStartOf="@+id/buttonSwapNo"
         app:layout_constraintStart_toStartOf="parent"
