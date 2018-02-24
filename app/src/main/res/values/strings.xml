@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">ResidenceManagement</string>
-    <string name ="swap_request">Do you want to request a swap for kitchen between 5PM-6PM?</string>
+    <string name="swap_request">Do you want to request a swap for kitchen between 5PM-6PM?</string>
     <string name="swap_heading">Selected slot for kitchen is full!</string>
 </resources>

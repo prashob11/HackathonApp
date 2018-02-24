@@ -29,8 +29,9 @@
         <activity android:name=".ContactManagementActivity" />
         <activity android:name=".ManagementAckActivity" />
         <activity android:name=".SwapRequestForm" />
-        <activity android:name=".Messages">
-        </activity>
+        <activity android:name=".Messages" />
+        <activity android:name=".ChatForum" />
+        <activity android:name=".SwapConfirmation"></activity>
     </application>
 
 </manifest>

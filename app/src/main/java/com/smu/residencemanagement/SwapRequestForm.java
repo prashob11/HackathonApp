@@ -25,6 +25,7 @@ public class SwapRequestForm extends AppCompatActivity {
     //    addlisternerOnyesButton();
     }
 
+
   /*/  private void addlisternerOnyesButton() {
         yesButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,9 +54,11 @@ public class SwapRequestForm extends AppCompatActivity {
                 LongOperation l=new LongOperation();
                 l.execute();  //sends the email in background
                 Toast.makeText(this, l.get(), Toast.LENGTH_SHORT).show();
+
             } catch (Exception e) {
                 Log.e("SendMail", e.getMessage(), e);
-
             }
+
      }
+
 }
