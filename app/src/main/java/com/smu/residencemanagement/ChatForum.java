@@ -10,18 +10,11 @@ public class ChatForum extends AppCompatActivity {
     Button msg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        msg = findViewById(R.id.newmsg);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_forum);
-        msg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                    gotoMessages(v);
-                }
-        });
-
     }
-    public void gotoMessages(View v){
+
+    public void gotoMessages(View view){
         Intent intent = new Intent(this, Messages.class);
         startActivity(intent);
     }

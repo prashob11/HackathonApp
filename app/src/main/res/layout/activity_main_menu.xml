@@ -46,6 +46,7 @@
             android:layout_alignStart="@+id/buttonUpcomingBookings"
             android:layout_below="@+id/buttonUpcomingBookings"
             android:layout_marginTop="20dp"
+            android:onClick="goToChatForum"
             android:text="Chat Forum" />
 
         <Button
