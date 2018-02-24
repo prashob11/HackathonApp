@@ -44,6 +44,7 @@ public class ReservationActivity extends AppCompatActivity implements
         btnDatePicker = (Button) findViewById(R.id.btn_date);
         txtDate = (EditText) findViewById(R.id.in_date);
         btnDatePicker.setOnClickListener(this);
+        String userEmail = intent.getStringExtra("UserEmail");
         String[] buttonIdArray={"button6AM7AM",	"button7AM8AM",	"button8AM9AM",	"button9AM10AM",	"button10AM11AM",	"button11AM12PM",	"button12PM1PM",	"button1PM2PM",	"button2PM3PM",	"button3PM4PM",	"button4PM5PM",	"button5PM6PM",	"button6PM7PM",	"button7PM8PM",	"button8PM9PM",	"button9PM10PM",	"button10PM11PM",	"button11PM12AM"};
 
 
@@ -65,7 +66,7 @@ public class ReservationActivity extends AppCompatActivity implements
             Log.d("Timeslot:",buttonId);
 
             Log.d("Facility",  intent.getStringExtra("activityType"));
-            //Log.d("UserEmail",  Login.UserEmail);
+            Log.d("UserEmail",  userEmail);
 
             //For swap
             //Log.d("Booked event time:","Hi ");

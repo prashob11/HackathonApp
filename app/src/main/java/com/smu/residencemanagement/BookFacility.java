@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
 import java.util.regex.*;
 import java.sql.Struct;
 import java.util.*;
@@ -25,14 +27,26 @@ public class BookFacility extends AppCompatActivity {
 
     Intent intent;
     ArrayList<String> bookedEvents=new ArrayList<>();;
+    String email;
+    String formattedDate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_facility);
+        if(getIntent().getExtras()!=null)
+        {
+            email=getIntent().getStringExtra("UserEmail");
+            Log.d("Email",email);
+        }
     }
 
     public void bookOnClick(View view)
     {
+        Date c = Calendar.getInstance().getTime();
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        formattedDate = df.format(c);
+        Log.d("Current Date:" , formattedDate);
         intent = new Intent(BookFacility.this, ReservationActivity.class);
         switch(view.getId())
         {
@@ -75,7 +89,8 @@ public class BookFacility extends AppCompatActivity {
                 activityType="NOTHING";
                  break;
         }
-        getBookingDetail(activityType);
+        intent.putExtra("UserEmail",email);
+        getBookingDetail(activityType,formattedDate);
         Log.d("For Testing Size",Integer.toString(bookedEvents.size()));
         for(String s: bookedEvents){
             Log.d("For Testing", s);
@@ -85,7 +100,7 @@ public class BookFacility extends AppCompatActivity {
 
     }
 
-    public void getBookingDetail(final String activityType){
+    public void getBookingDetail(final String activityType,final String formattedDate){
         class BookingDetailFunctionClass extends AsyncTask<String,String,String> {
 
             @Override
@@ -118,6 +133,7 @@ public class BookFacility extends AppCompatActivity {
                 }
                 intent.putStringArrayListExtra("bookedEvents", bookedEvents);
                // Intent intent = new Intent(BookFacility.this, ReservationActivity.class);
+
                 startActivity(intent);
             }
 
@@ -125,6 +141,7 @@ public class BookFacility extends AppCompatActivity {
             protected String doInBackground(String... params) {
 
                 hashMap.put("facilityName",params[0]);
+                hashMap.put("dateOfBooking",params[1]);
                 //hashMap.put("bookedEvents",params[1]);
                 finalResult = httpParse.postRequest(hashMap, HttpURL);
 
@@ -137,7 +154,7 @@ public class BookFacility extends AppCompatActivity {
         }
         BookingDetailFunctionClass bookingDetailFunctionClass = new BookingDetailFunctionClass();
 
-        bookingDetailFunctionClass.execute(activityType);
+        bookingDetailFunctionClass.execute(activityType,formattedDate);
     }
 
 

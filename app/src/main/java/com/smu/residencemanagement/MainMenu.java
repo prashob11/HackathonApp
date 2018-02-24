@@ -9,17 +9,25 @@ import android.widget.Button;
 
 public class MainMenu extends AppCompatActivity {
 
-
+    String email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+        if(getIntent().getExtras()!=null)
+        {
+            email=getIntent().getStringExtra("UserEmail");
+            //Log.d("Email",email);
+        }
+
+        //intent.putExtra("UserEmail",intent.getStringExtra("UserEmail"));
     }
 
     public void goToBookFacility(View view){
 
         Intent intent = new Intent(MainMenu.this, BookFacility.class);
-
+        //Log.d("Email",intent.getStringExtra("UserEmail").toString());
+        intent.putExtra("UserEmail",email);
         startActivity(intent);
 
     }
@@ -35,7 +43,6 @@ public class MainMenu extends AppCompatActivity {
     public void goToUpcomingBookings(View view){
 
         Intent intent = new Intent(MainMenu.this, SwapRequestForm.class);
-
         startActivity(intent);
 
     }
@@ -43,6 +50,7 @@ public class MainMenu extends AppCompatActivity {
     public void goToChatForum(View view){
 
         Intent intent = new Intent(MainMenu.this, ChatForum.class);
+        intent.putExtra("UserEmail",intent.getStringExtra("UserEmail"));
 
         startActivity(intent);
 
