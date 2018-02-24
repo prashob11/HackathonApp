@@ -28,7 +28,8 @@
         <activity android:name=".BookingSummaryActivity" />
         <activity android:name=".ContactManagementActivity" />
         <activity android:name=".ManagementAckActivity" />
-        <activity android:name=".SwapRequestForm">
+        <activity android:name=".SwapRequestForm" />
+        <activity android:name=".Messages">
         </activity>
     </application>
 
