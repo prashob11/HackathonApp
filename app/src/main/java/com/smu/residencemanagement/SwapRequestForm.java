@@ -1,6 +1,7 @@
 package com.smu.residencemanagement;
 
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,12 +26,20 @@ public class SwapRequestForm extends AppCompatActivity {
             try {
                 String msgBody = messageBody.getText().toString();
                 LongOperation l=new LongOperation();
+                l.subject = "Swap Request";
                 l.msgBody = msgBody;
                 l.execute();  //sends the email in background
                 Toast.makeText(this, l.get(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(SwapRequestForm.this, SwapConfirmation.class);
+                startActivity(intent);
             } catch (Exception e) {
                 Log.e("SendMail", e.getMessage(), e);
 
             }
+     }
+
+     public void goToMainMenu(View view) {
+         Intent intent = new Intent(SwapRequestForm.this, MainMenu.class);
+         startActivity(intent);
      }
 }

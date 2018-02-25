@@ -50,7 +50,7 @@ public class MainMenu extends AppCompatActivity {
     public void goToContactManagement(View view){
 
         Intent intent = new Intent(MainMenu.this, ContactManagementActivity.class);
-        intent.putExtra("UserEmail",intent.getStringExtra("UserEmail"));
+        intent.putExtra("UserEmail",email);
 
         startActivity(intent);
 

@@ -10,6 +10,7 @@ public class LongOperation extends AsyncTask<Void, Void, String> {
     String to = "prashob8@gmail.com";
     String from = "prashob.87@gmail.com";
     String msgBody;
+    String subject;
 
 
     @Override
@@ -17,7 +18,7 @@ public class LongOperation extends AsyncTask<Void, Void, String> {
 
         try {
             GMailSender sender = new GMailSender(from, "megamind");
-            sender.sendMail("Swap Request",msgBody,from, to);
+            sender.sendMail(subject,msgBody,from, to);
         } catch (Exception e) {
 
             Log.e("error", e.getMessage(), e);

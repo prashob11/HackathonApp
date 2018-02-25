@@ -105,7 +105,7 @@ public class ReservationActivity extends AppCompatActivity implements
             Log.d("UserEmail",  userEmail);
             */
             //For swap
-            Log.d("Size before clear in refresh",Integer.toString(bookedEventTimes.size()));
+//            Log.d("Size before clear in refresh",Integer.toString(bookedEventTimes.size()));
             if(bookedEventTimes.keySet().contains(buttonId)){
                 findViewById(resId).setBackgroundColor(Color.DKGRAY);
                 ((Button) findViewById(resId)).setTextColor(Color.RED);
@@ -296,9 +296,9 @@ public class ReservationActivity extends AppCompatActivity implements
 
                 Pattern pattern= Pattern.compile("(button\\d+(?:AM|PM)\\d+(?:AM|PM)\",\"[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\\.[a-zA-Z0-9_-]+)");
                 Matcher matcher = pattern.matcher(httpResponseMsg.toString());
-                Log.d("Size before clear",Integer.toString(bookedEventTimes.size()));
+    //            Log.d("Size before clear",Integer.toString(bookedEventTimes.size()));
                 bookedEventTimes.clear();
-                Log.d("Size after clear",Integer.toString(bookedEventTimes.size()));
+   //             Log.d("Size after clear",Integer.toString(bookedEventTimes.size()));
                 String[] keyValue;
                 while (matcher.find()) {
                     keyValue= matcher.group().replace("\"","").split(",");
