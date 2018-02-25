@@ -13,4 +13,9 @@ public class RegisterSuccessful extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_successful);
     }
+
+    public void gotoLogin(View view){
+        Intent intent = new Intent(this, Login.class);
+        startActivity(intent);
+    }
 }

@@ -83,8 +83,9 @@ public class SignUp extends AppCompatActivity {
         });
 
     }
+
     public void gotoRegisterSuccessful(View view){
-        Intent intent = new Intent(this, RegisterSuccessful.class);
+        Intent intent = new Intent(SignUp.this, RegisterSuccessful.class);
         startActivity(intent);
     }
 
