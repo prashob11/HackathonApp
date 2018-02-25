@@ -2,4 +2,8 @@
     <string name="app_name">ResidenceManagement</string>
     <string name="swap_request">Do you want to request a swap for kitchen between 5PM-6PM?</string>
     <string name="swap_heading">Selected slot for kitchen is full!</string>
+
+
+    <string name="contact_request">Thank you for contacting management?</string>
+    <string name="contact_heading">Contact Management</string>
 </resources>
