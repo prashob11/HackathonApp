@@ -107,7 +107,7 @@ public class BookFacility extends AppCompatActivity {
                 super.onPostExecute(httpResponseMsg);
 
                 progressDialog.dismiss();
-                Toast.makeText(BookFacility.this,httpResponseMsg.toString(), Toast.LENGTH_LONG).show();
+               // Toast.makeText(BookFacility.this,httpResponseMsg.toString(), Toast.LENGTH_LONG).show();
 
                 //Pattern pattern = Pattern.compile("(button\\d+AM\\d+AM)");
                 Pattern pattern= Pattern.compile("(button\\d+(?:AM|PM)\\d+(?:AM|PM)\",\"[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\\.[a-zA-Z0-9_-]+)");

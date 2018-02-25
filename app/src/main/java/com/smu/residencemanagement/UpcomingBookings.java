@@ -134,7 +134,7 @@ public class UpcomingBookings extends AppCompatActivity {
                 }
 */
 
-                Toast.makeText(UpcomingBookings.this,httpResponseMsg,Toast.LENGTH_LONG).show();
+                //Toast.makeText(UpcomingBookings.this,httpResponseMsg,Toast.LENGTH_LONG).show();
             }
 
             @Override
