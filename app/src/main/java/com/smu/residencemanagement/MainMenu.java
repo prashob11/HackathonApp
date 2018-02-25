@@ -35,6 +35,7 @@ public class MainMenu extends AppCompatActivity {
     public void goToUpcomingBookings(View view){
 
         Intent intent = new Intent(MainMenu.this, UpcomingBookings.class);
+        intent.putExtra("UserEmail",email);
         startActivity(intent);
 
     }
@@ -42,8 +43,7 @@ public class MainMenu extends AppCompatActivity {
     public void goToChatForum(View view){
 
         Intent intent = new Intent(MainMenu.this, ChatForum.class);
-        intent.putExtra("UserEmail",intent.getStringExtra("UserEmail"));
-
+        intent.putExtra("UserEmail",email);
         startActivity(intent);
 
     }
