@@ -195,20 +195,23 @@ public class ReservationActivity extends AppCompatActivity implements
                                 if(swapOrBook.equals("Are you sure you want to book this slot?")){
 
                                     BookingFunction(buttonId,userEmail,activity,dateOfBooking,"BOOK");
-                                     intent = new Intent(ReservationActivity .this, BookingSummaryActivity.class);
+                                     intent = new Intent(ReservationActivity .this, UpcomingBookings.class);
                                     //Intent intent = getIntent();
                                     //finish();
+                                    intent.putExtra("UserEmail",getIntent().getStringExtra("UserEmail"));
                                     startActivity(intent);
                                 }
                                 else if(swapOrBook.equals("Are you sure you want to cancel this slot?")){
                                     BookingFunction(buttonId,userEmail,activity,dateOfBooking,"CANCEL");
-                                    intent = new Intent(ReservationActivity .this, BookingSummaryActivity.class);
+                                    intent = new Intent(ReservationActivity .this, UpcomingBookings.class);
+                                    intent.putExtra("UserEmail",getIntent().getStringExtra("UserEmail"));
                                     startActivity(intent);
                                 }
                                 else
                                 {
                                     BookingFunction(buttonId,userEmail,activity,dateOfBooking,"SWAP");
                                     intent = new Intent(ReservationActivity .this, SwapRequestForm.class);
+                                    intent.putExtra("UserEmail",getIntent().getStringExtra("UserEmail"));
                                     startActivity(intent);
 
                                 }
