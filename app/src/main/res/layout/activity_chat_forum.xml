@@ -36,6 +36,7 @@
             android:text="Add New Message" />
 
         <ListView
+            android:id="@+id/listChatForum"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
