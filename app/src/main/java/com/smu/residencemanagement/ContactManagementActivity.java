@@ -27,6 +27,7 @@ public class ContactManagementActivity extends AppCompatActivity {
         } catch (Exception e) {
             Log.e("SendMail", e.getMessage(), e);
 
+
         }
     }
 }
