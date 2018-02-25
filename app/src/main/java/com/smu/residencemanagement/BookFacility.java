@@ -8,13 +8,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
-
 import java.text.SimpleDateFormat;
 import java.util.regex.*;
-import java.sql.Struct;
 import java.util.*;
-import org.json.JSONArray;
-
 import java.util.HashMap;
 
 public class BookFacility extends AppCompatActivity {
@@ -26,7 +22,7 @@ public class BookFacility extends AppCompatActivity {
     String activityType;
 
     Intent intent;
-    ArrayList<String> bookedEvents=new ArrayList<>();;
+    HashMap<String,String> bookedEvents=new HashMap<>();
     String email;
     String formattedDate;
     @Override
@@ -36,7 +32,6 @@ public class BookFacility extends AppCompatActivity {
         if(getIntent().getExtras()!=null)
         {
             email=getIntent().getStringExtra("UserEmail");
-            Log.d("Email",email);
         }
     }
 
@@ -87,15 +82,11 @@ public class BookFacility extends AppCompatActivity {
             default:Log.d("myTag", "I am Out of here");
                 intent.putExtra("activityType","Nothing");
                 activityType="NOTHING";
-                 break;
+                break;
         }
         intent.putExtra("UserEmail",email);
         getBookingDetail(activityType,formattedDate);
-        Log.d("For Testing Size",Integer.toString(bookedEvents.size()));
-        for(String s: bookedEvents){
-            Log.d("For Testing", s);
-        }
-        intent.putStringArrayListExtra("bookedEvents", bookedEvents);
+        intent.putExtra("bookedEvents", bookedEvents);
 
 
     }
@@ -116,24 +107,21 @@ public class BookFacility extends AppCompatActivity {
                 super.onPostExecute(httpResponseMsg);
 
                 progressDialog.dismiss();
-                Log.d("Response from server", httpResponseMsg.toString());
-
                 Toast.makeText(BookFacility.this,httpResponseMsg.toString(), Toast.LENGTH_LONG).show();
 
-                Pattern pattern = Pattern.compile("(button\\d+AM\\d+AM)");
+                //Pattern pattern = Pattern.compile("(button\\d+AM\\d+AM)");
+                Pattern pattern= Pattern.compile("(button\\d+(?:AM|PM)\\d+(?:AM|PM)\",\"[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\\.[a-zA-Z0-9_-]+)");
                 Matcher matcher = pattern.matcher(httpResponseMsg.toString());
-                //bookedEvents = new ArrayList<>();
-                while (matcher.find()) {
-                    // Get the matching string
-                    bookedEvents.add(matcher.group());
-                    Log.d("This",matcher.group());
-                }
-                for(String s:bookedEvents){
-                    Log.d("List",s);
-                }
-                intent.putStringArrayListExtra("bookedEvents", bookedEvents);
-               // Intent intent = new Intent(BookFacility.this, ReservationActivity.class);
 
+                String[] keyValue;
+                while (matcher.find()) {
+                    keyValue= matcher.group().replace("\"","").split(",");
+
+                    bookedEvents.put(keyValue[0],keyValue[1]);
+                }
+
+
+                intent.putExtra("bookedEvents", bookedEvents);
                 startActivity(intent);
             }
 
@@ -142,12 +130,7 @@ public class BookFacility extends AppCompatActivity {
 
                 hashMap.put("facilityName",params[0]);
                 hashMap.put("dateOfBooking",params[1]);
-                //hashMap.put("bookedEvents",params[1]);
                 finalResult = httpParse.postRequest(hashMap, HttpURL);
-
-                Log.d("Activity" , params[0]);
-
-
                 return finalResult;
             }
 

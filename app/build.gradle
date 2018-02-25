@@ -29,4 +29,5 @@ dependencies {
     compile files('../lib/additionnal.jar')
     compile files('../lib/mail.jar')
     compile files('../lib/activation.jar')
+    compile 'com.basgeekball:awesome-validation:1.3'
 }

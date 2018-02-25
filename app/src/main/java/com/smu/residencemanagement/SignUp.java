@@ -11,8 +11,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.google.common.collect.Range;
 import java.util.HashMap;
+import android.util.Patterns;
 
 public class SignUp extends AppCompatActivity {
     Button register, log_in;
@@ -24,6 +27,7 @@ public class SignUp extends AppCompatActivity {
     ProgressDialog progressDialog;
     HashMap<String,String> hashMap = new HashMap<>();
     HttpParse httpParse = new HttpParse();
+    private AwesomeValidation awesomeValidation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,12 @@ public class SignUp extends AppCompatActivity {
 
         register = findViewById(R.id.Submit);
         log_in = findViewById(R.id.Login);
+        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
+        awesomeValidation.addValidation(this, R.id.editTextF_Name, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.fnameerror);
+        awesomeValidation.addValidation(this, R.id.editTextF_Name, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.lnameerror);
+        awesomeValidation.addValidation(this, R.id.editTextEmail, Patterns.EMAIL_ADDRESS, R.string.emailerror);
+        awesomeValidation.addValidation(this, R.id.editTextPassword, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.passworderror);
+
 
         //Adding Click Listener on button.
         register.setOnClickListener(new View.OnClickListener() {
@@ -45,12 +55,10 @@ public class SignUp extends AppCompatActivity {
 
                 // Checking whether EditText is Empty or Not
                 CheckEditTextIsEmptyOrNot();
-                gotoRegisterSuccessful(view);
-
-                if(CheckEditText){
+                if(CheckEditText && awesomeValidation.validate()){
 
                     // If EditText is not empty and CheckEditText = True then this block will execute.
-
+                    Toast.makeText(SignUp.this, "Registration Successful", Toast.LENGTH_LONG).show();
                     UserRegisterFunction(F_Name_Holder,L_Name_Holder, EmailHolder, PasswordHolder);
 
                 }

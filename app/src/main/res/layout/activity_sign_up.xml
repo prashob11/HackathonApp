@@ -79,6 +79,7 @@
         android:layout_below="@+id/editTextPassword"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
+        android:onClick="gotoRegisterSuccessful"
         android:id="@+id/Submit" />
 
     <Button

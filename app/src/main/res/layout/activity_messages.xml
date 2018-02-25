@@ -13,21 +13,16 @@
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
 
-        <EditText
-            android:id="@+id/editText"
+        <TextView
+            android:id="@+id/textView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Topic"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+            android:text="What's on your mind ?" />
 
-        <TextView
-            android:id="@+id/textView2"
+        <EditText
             android:layout_width="match_parent"
-            android:layout_height="333dp"
-            android:text="Message"
-            android:textAppearance="@android:style/TextAppearance.Widget.TextView" />
+            android:layout_height="wrap_content"
+            android:text="Type Message"/>
 
         <Button
             android:layout_width="match_parent"

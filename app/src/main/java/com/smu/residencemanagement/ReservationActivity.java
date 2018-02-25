@@ -4,19 +4,27 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.util.Log;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+
 import android.view.View.OnClickListener;
 import android.widget.Toast;
+
 
 public class ReservationActivity extends AppCompatActivity implements
         View.OnClickListener {
@@ -25,12 +33,17 @@ public class ReservationActivity extends AppCompatActivity implements
     Button timeButton;
     EditText txtDate;
     private int mYear, mMonth, mDay;
-    Intent intent;
     ProgressDialog progressDialog;
     HashMap<String,String> hashMap = new HashMap<>();
     String finalResult ;
     HttpParse httpParse = new HttpParse();
-    String HttpURL = "http://dev.cs.smu.ca/~n_akash/ResidenceManagement/UserRegistration.php";
+    String HttpURL = "http://dev.cs.smu.ca/~n_akash/ResidenceManagement/BookingActivity.php";
+    int resId;
+    Intent intent;
+    String activityName;
+    HashMap<String, String> bookedEventTimes;
+    String dateOfBooking;
+    Button btnOriginal;
 
 
     @Override
@@ -38,57 +51,101 @@ public class ReservationActivity extends AppCompatActivity implements
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservation);
-        Intent intent = getIntent();
-        String activityType = "Reserve a slot for " + intent.getStringExtra("activityType");
+        btnOriginal = (Button)findViewById(R.id.button5PM6PM);
+
+        Intent intent=getIntent();
+        activityName= intent.getStringExtra("activityType");
+        final String activityType = "Reserve a slot for " + intent.getStringExtra("activityType");
+
         ((TextView) findViewById(R.id.tvMessage)).setText(activityType);
         btnDatePicker = (Button) findViewById(R.id.btn_date);
         txtDate = (EditText) findViewById(R.id.in_date);
         btnDatePicker.setOnClickListener(this);
-        String userEmail = intent.getStringExtra("UserEmail");
+        bookedEventTimes = (HashMap<String, String>)intent.getSerializableExtra("bookedEvents");
+        reloadPageNeeded();
+    }
+
+    public void reloadPageNeeded(){
+        final Intent intent = getIntent();
+        final String userEmail = intent.getStringExtra("UserEmail");
         String[] buttonIdArray={"button6AM7AM",	"button7AM8AM",	"button8AM9AM",	"button9AM10AM",	"button10AM11AM",	"button11AM12PM",	"button12PM1PM",	"button1PM2PM",	"button2PM3PM",	"button3PM4PM",	"button4PM5PM",	"button5PM6PM",	"button6PM7PM",	"button7PM8PM",	"button8PM9PM",	"button9PM10PM",	"button10PM11PM",	"button11PM12AM"};
 
+        txtDate.addTextChangedListener(new TextWatcher() {
 
-        ArrayList<String> bookedEventTimes = getIntent().getStringArrayListExtra("bookedEvents");
+            public void afterTextChanged(Editable s) {}
+
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                refreshPageFunction(txtDate.getText().toString());
+
+            }
+        });
+
+        //ArrayList<String> bookedEventTimes = getIntent().getStringArrayListExtra("bookedEvents");
+
+//        Log.v("HashMapTest", bookedEventTimes.get("button6AM7AM"));
+
         //Log.d("Booked event time:","Hi ");
-        int resId;
 
-        //Log.d("SIZE:", Integer.toString(bookedEventTimes.size()));
-
-        /*for(String s: bookedEventTimes){
-            //Log.d("Id of button",Integer.toString(R.id.button5PM6PM) );
-            Log.d("Booked event time:", s);
-        }*/
-
-        //Log.d("IdName of button", Integer.toString (resId));
-        for(String buttonId: buttonIdArray){
+        for(final String buttonId: buttonIdArray){
             resId= getResources().getIdentifier(buttonId, "id",getPackageName());
             timeButton=(Button) findViewById(resId);
-            Log.d("Timeslot:",buttonId);
+
+            /*for(String s:bookedEventTimes.keySet())
+            {
+                Log.d("Value in keyset",s);
+            }*/
+            /*Log.d("Timeslot:",buttonId);
 
             Log.d("Facility",  intent.getStringExtra("activityType"));
             Log.d("UserEmail",  userEmail);
-
+            */
             //For swap
-            //Log.d("Booked event time:","Hi ");
-            if(bookedEventTimes.contains(buttonId)){
+            Log.d("Size before clear in refresh",Integer.toString(bookedEventTimes.size()));
+            if(bookedEventTimes.keySet().contains(buttonId)){
+                findViewById(resId).setBackgroundColor(Color.DKGRAY);
+                ((Button) findViewById(resId)).setTextColor(Color.RED);
                 timeButton.setOnClickListener(new OnClickListener()
                 {
-                    public void onClick(View v)
-                    {
+                    public void onClick(View v) {
                         /*Intent intent = new Intent(ReservationActivity .this, SwapRequestForm.class);
                         startActivity(intent);*/
                         //Log.d("Inside Swap","inside swap");
-                        showAlert("Are you sure you want to ask for swapping?");
+                        /*Log.d("User From map ---------->", bookedEventTimes.get(buttonId));
+                        Log.d("user Email address------------>",userEmail);*/
+
+                        //FOR CANCEL
+                        if (!txtDate.getText().toString().isEmpty())
+                        {
+                            if (bookedEventTimes.get(buttonId).equalsIgnoreCase(userEmail)) {
+                                showAlert("Are you sure you want to cancel this slot?", buttonId, activityName, userEmail);
+                            } else {
+                                showAlert("Are you sure you want to ask for swapping?", buttonId, activityName, userEmail);
+                            }
+                        }
+                        else
+                        {
+                            Toast.makeText(ReservationActivity.this, "Please select date.", Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
             }
             else
             {
+                findViewById(resId).setBackgroundColor(btnOriginal.getBackground().getAlpha());
+                ((Button) findViewById(resId)).setTextColor(Color.BLACK);
                 timeButton.setOnClickListener(new OnClickListener()
                 {
                     public void onClick(View v)
                     {
-                        showAlert("Are you sure you want to book this slot?");
+                        if(!txtDate.getText().toString().isEmpty())
+                            showAlert("Are you sure you want to book this slot?",buttonId,activityName, userEmail);
+                        else
+                            Toast.makeText(ReservationActivity.this, "Please select date.", Toast.LENGTH_LONG).show();
                         //Intent intent = new Intent(ReservationActivity .this, BookingSummaryActivity.class);
                         //startActivity(intent);
                         //Log.d("Inside create","inside create");
@@ -97,7 +154,6 @@ public class ReservationActivity extends AppCompatActivity implements
             }
 
         }
-
     }
 
     @Override
@@ -119,7 +175,7 @@ public class ReservationActivity extends AppCompatActivity implements
                         public void onDateSet(DatePicker view, int year,
                                               int monthOfYear, int dayOfMonth) {
 
-                            txtDate.setText(year+"-"+dayOfMonth + "-" + (monthOfYear + 1) );
+                            txtDate.setText(year+"-"  + (monthOfYear + 1) +"-"+dayOfMonth);
 
                         }
                     }, mYear, mMonth, mDay);
@@ -127,9 +183,9 @@ public class ReservationActivity extends AppCompatActivity implements
         }
     }
 
-    private void showAlert(final String swapOrBook) {
-        Log.d("Date of booking:", txtDate.getText().toString());
-        Log.d("Inside Alter",swapOrBook);
+    private void showAlert(final String swapOrBook, final String buttonId, final String activity, final String userEmail) {
+        dateOfBooking =txtDate.getText().toString();
+
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(swapOrBook)
                 .setPositiveButton("Yes",
@@ -138,14 +194,25 @@ public class ReservationActivity extends AppCompatActivity implements
                                 dialog.cancel();
                                 if(swapOrBook.equals("Are you sure you want to book this slot?")){
 
+                                    BookingFunction(buttonId,userEmail,activity,dateOfBooking,"BOOK");
                                      intent = new Intent(ReservationActivity .this, BookingSummaryActivity.class);
+                                    //Intent intent = getIntent();
+                                    //finish();
+                                    startActivity(intent);
+                                }
+                                else if(swapOrBook.equals("Are you sure you want to cancel this slot?")){
+                                    BookingFunction(buttonId,userEmail,activity,dateOfBooking,"CANCEL");
+                                    intent = new Intent(ReservationActivity .this, BookingSummaryActivity.class);
+                                    startActivity(intent);
                                 }
                                 else
                                 {
-                                     intent = new Intent(ReservationActivity .this, SwapRequestForm.class);
+                                    BookingFunction(buttonId,userEmail,activity,dateOfBooking,"SWAP");
+                                    intent = new Intent(ReservationActivity .this, SwapRequestForm.class);
+                                    startActivity(intent);
 
                                 }
-                                startActivity(intent);
+//                                startActivity(intent);
                             }
                         })
                 .setNegativeButton("No",
@@ -159,7 +226,7 @@ public class ReservationActivity extends AppCompatActivity implements
         AlertDialog alert = builder.create();
         alert.show();
     }
-    public void BookingFunction(final String timeSlot, final String email, final String facility, final String dateOfBooking){
+    public void BookingFunction(final String timeSlot, final String email, final String facility, final String dateOfBooking, final String bookOrCancelOrSwap){
 
         class BookingFunctionClass extends AsyncTask<String,Void,String> {
 
@@ -177,6 +244,7 @@ public class ReservationActivity extends AppCompatActivity implements
 
                 progressDialog.dismiss();
 
+
                 Toast.makeText(ReservationActivity.this,httpResponseMsg.toString(), Toast.LENGTH_LONG).show();
 
             }
@@ -191,11 +259,9 @@ public class ReservationActivity extends AppCompatActivity implements
                 hashMap.put("facility",params[2]);
 
                 hashMap.put("dateOfBooking",params[3]);
+                hashMap.put("bookOrCancelOrSwap",params[4]);
 
                 finalResult = httpParse.postRequest(hashMap, HttpURL);
-
-                Log.d("signin" , params[0]);
-
 
                 return finalResult;
             }
@@ -203,6 +269,63 @@ public class ReservationActivity extends AppCompatActivity implements
 
         BookingFunctionClass bookingFunctionClass = new BookingFunctionClass();
 
-        bookingFunctionClass.execute(timeSlot,email,facility,dateOfBooking);
+        bookingFunctionClass.execute(timeSlot,email,facility,dateOfBooking,bookOrCancelOrSwap);
+    }
+
+    public void refreshPageFunction(final String dateOfBooking){
+
+        class RefreshPageFunctionClass extends AsyncTask<String,Void,String> {
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+
+                progressDialog = ProgressDialog.show(ReservationActivity.this,"Loading Data",null,true,true);
+            }
+
+            @Override
+            protected void onPostExecute(String httpResponseMsg) {
+
+                super.onPostExecute(httpResponseMsg);
+
+
+
+                //bookedEventTimes.clear();
+                progressDialog.dismiss();
+                Toast.makeText(ReservationActivity.this,httpResponseMsg.toString(), Toast.LENGTH_LONG).show();
+
+                Pattern pattern= Pattern.compile("(button\\d+(?:AM|PM)\\d+(?:AM|PM)\",\"[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\\.[a-zA-Z0-9_-]+)");
+                Matcher matcher = pattern.matcher(httpResponseMsg.toString());
+                Log.d("Size before clear",Integer.toString(bookedEventTimes.size()));
+                bookedEventTimes.clear();
+                Log.d("Size after clear",Integer.toString(bookedEventTimes.size()));
+                String[] keyValue;
+                while (matcher.find()) {
+                    keyValue= matcher.group().replace("\"","").split(",");
+
+                    bookedEventTimes.put(keyValue[0],keyValue[1]);
+                }
+
+
+                reloadPageNeeded();
+            }
+
+            @Override
+            protected String doInBackground(String... params) {
+
+                hashMap.put("dateOfBooking",params[0]);
+
+                hashMap.put("ref","REFRESH");
+                hashMap.put("activity",activityName);
+
+                finalResult = httpParse.postRequest(hashMap, HttpURL);
+
+                return finalResult;
+            }
+        }
+
+        RefreshPageFunctionClass refreshPageFunctionClass = new RefreshPageFunctionClass();
+
+        refreshPageFunctionClass.execute(dateOfBooking);
     }
 }

@@ -47,5 +47,12 @@ public class MainMenu extends AppCompatActivity {
         startActivity(intent);
 
     }
+    public void goToContactManagement(View view){
 
+        Intent intent = new Intent(MainMenu.this, ContactManagementActivity.class);
+        intent.putExtra("UserEmail",intent.getStringExtra("UserEmail"));
+
+        startActivity(intent);
+
+    }
 }
