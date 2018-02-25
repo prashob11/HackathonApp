@@ -20,13 +20,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/editText3"
+        <TextView
+            android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Chat Forum"
+            android:text="Hot Topics"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
         <Button
