@@ -2,4 +2,8 @@
     <string name="app_name">ResidenceManagement</string>
     <string name="swap_request">Do you want to request a swap for kitchen between 5PM-6PM?</string>
     <string name="swap_heading">Selected slot for kitchen is full!</string>
+    <string name="emailerror">Enter Valid Email</string>
+    <string name="passworderror">Enter Some Password</string>
+    <string name="fnameerror">Enter a valid first name</string>
+    <string name="lnameerror">Enter a valid last name</string>
 </resources>
