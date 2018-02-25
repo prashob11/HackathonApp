@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/too_much_items_toast_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Zoomen"
+        android:textColor="#000"
+        android:textSize="15sp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingVertical="@dimen/cardview_default_elevation"
+        android:scaleType="center"
+        android:onClick="gotoLogin"
+        android:src="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="345dp"
+        android:layout_height="wrap_content"
+        android:text="Welcome To Our Residence"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
+        android:textColor="@android:color/white" />
+</FrameLayout>
