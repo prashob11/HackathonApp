@@ -28,7 +28,7 @@
         android:id="@+id/textView1"
         android:layout_width="345dp"
         android:layout_height="wrap_content"
-        android:text="Welcome To Our Residence"
+        android:text="Welcome To Atlantic Lottery System"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
         android:textColor="@android:color/white" />

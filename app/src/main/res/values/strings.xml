@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ResidenceManagement</string>
+    <string name="app_name">ALC Ticket System</string>
     <string name="swap_request">Do you want to send message along with request for swap?</string>
     <string name="swap_heading">Selected slot is full!</string>
     <string name="contact_request">Thank you for contacting management?</string>
