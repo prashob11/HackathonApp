@@ -6,10 +6,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainMenu extends AppCompatActivity {
-
     String email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,8 +25,8 @@ public class MainMenu extends AppCompatActivity {
     }
 
     public void goToBookFacility(View view){
-
-        Intent intent = new Intent(MainMenu.this, BookFacility.class);
+        Intent intent = new Intent(MainMenu.this, ScanActivity.class);
+  //      Intent intent = new Intent(MainMenu.this, BookFacility.class);
         //Log.d("Email",intent.getStringExtra("UserEmail").toString());
         intent.putExtra("UserEmail",email);
         startActivity(intent);
@@ -55,4 +56,5 @@ public class MainMenu extends AppCompatActivity {
         startActivity(intent);
 
     }
+
 }
