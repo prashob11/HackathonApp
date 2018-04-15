@@ -24,7 +24,7 @@ public class UpcomingBookings extends AppCompatActivity {
     HashMap<String,String> hashMap = new HashMap<>();
     HttpParse httpParse = new HttpParse();
     String finalResult ;
-    String HttpURL = "http://dev.cs.smu.ca/~n_akash/ResidenceManagement/UpcomingBooking.php";
+    String HttpURL = "http://dev.cs.smu.ca/~n_akash/ResidenceManagement/ticketBooking.php";
     String userEmail;
 
     Date c = Calendar.getInstance().getTime();
@@ -87,13 +87,13 @@ public class UpcomingBookings extends AppCompatActivity {
             userEmail=getIntent().getStringExtra("UserEmail");
             Log.d("Email",userEmail);
         }
-        UpcomingBookingFunction(userEmail, dateOfBooking);
+        TicketBookingFunction(userEmail);
 
     }
 
-    public void UpcomingBookingFunction(final String userEmail, final String dateOfBooking){
+    public void TicketBookingFunction(final String userEmail){
 
-        class UpcomingBookingClass extends AsyncTask<String,Void,String> {
+        class TicketBookingClass extends AsyncTask<String,Void,String> {
 
             @Override
             protected void onPreExecute() {
@@ -117,10 +117,7 @@ public class UpcomingBookings extends AppCompatActivity {
                     keyValue = matcher.group().replace("\"","").split(",");
 
                   bookings.add(new Bookings(getMyStringResource(keyValue[0]),getMyStringResource(keyValue[1])));
-                   /* Log.d("This****",matcher.group());
-                    Log.d("This****",String.valueOf(getMyStringResource(keyValue[0])));
-                    Log.d("This****",String.valueOf(getMyStringResource(keyValue[1])));
-                    //Log.d("This****", String.valueOf());*/
+
                 }
 
                 GridView gridView = (GridView)findViewById(R.id.gridview);
@@ -142,16 +139,14 @@ public class UpcomingBookings extends AppCompatActivity {
 
                 hashMap.put("userEmail",params[0]);
 
-                hashMap.put("dateOfBooking",params[1]);
-
                 finalResult = httpParse.postRequest(hashMap, HttpURL);
 
                 return finalResult;
             }
         }
 
-        UpcomingBookingClass upcomingBookingClass = new UpcomingBookingClass();
+        TicketBookingClass TicketBookingClass = new TicketBookingClass();
 
-        upcomingBookingClass.execute(userEmail,dateOfBooking);
+        TicketBookingClass.execute(userEmail);
     }
 }

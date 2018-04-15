@@ -1,9 +1,11 @@
 package com.smu.residencemanagement;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -14,13 +16,26 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.google.zxing.Result;
+
+import java.util.HashMap;
+
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import static android.Manifest.permission.CAMERA;
+
+
 
 public class ScanActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
     private static final int REQUEST_CAMERA = 1;
     private ZXingScannerView mScannerView;
+    ProgressDialog progressDialog;
+    HashMap<String,String> hashMap = new HashMap<>();
+    HttpParse httpParse = new HttpParse();
+    String finalResult ;
+    Intent intent;
+    String HttpURL = "http://dev.cs.smu.ca/~n_akash/ResidenceManagement/ScanActivity.php";
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,8 +129,8 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
     }
 
     @Override
-    public void handleResult(Result rawResult) {
-
+    public void handleResult(final Result rawResult) {
+        final String userEmail=getIntent().getStringExtra("UserEmail");;
         final String result = rawResult.getText();
         Log.d("QRCodeScanner", rawResult.getText());
         Log.d("QRCodeScanner", rawResult.getBarcodeFormat().toString());
@@ -125,7 +140,10 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                mScannerView.resumeCameraPreview(ScanActivity.this);
+                ScanActivityFunction(rawResult.getText(),userEmail);
+                //mScannerView.resumeCameraPreview(ScanActivity.this);
+                Intent intent = new Intent(ScanActivity .this, UpcomingBookings.class);
+                startActivity(intent);
             }
         });
         builder.setNeutralButton("Visit", new DialogInterface.OnClickListener() {
@@ -136,8 +154,57 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
             }
         });
         builder.setMessage(rawResult.getText());
+
         AlertDialog alert1 = builder.create();
+
+        Log.d("Email in ScanActivity:", userEmail);
+
         alert1.show();
     }
 
+    public void ScanActivityFunction(final String barId, final String email){
+
+        class ScanActivityFunctionClass extends AsyncTask<String,Void,String> {
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+
+                progressDialog = ProgressDialog.show(ScanActivity.this,"Loading Data",null,true,true);
+            }
+
+            @Override
+            protected void onPostExecute(String httpResponseMsg) {
+
+                super.onPostExecute(httpResponseMsg);
+
+                progressDialog.dismiss();
+
+                Toast.makeText(ScanActivity.this,httpResponseMsg.toString(), Toast.LENGTH_LONG).show();
+
+            }
+
+            @Override
+            protected String doInBackground(String... params) {
+
+                hashMap.put("barId",params[0]);
+
+                hashMap.put("email",params[1]);
+
+                finalResult = httpParse.postRequest(hashMap, HttpURL);
+
+                Log.d("scanIn" , params[0]);
+
+
+                return finalResult;
+            }
+        }
+
+        ScanActivityFunctionClass scanActivityFunctionClass = new ScanActivityFunctionClass();
+
+        scanActivityFunctionClass.execute(barId,email);
+    }
+
 }
+
+
