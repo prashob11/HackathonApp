@@ -58,7 +58,7 @@ public class UpcomingBookingsAdapter extends BaseAdapter {
         // 4
 
         facilityTextView.setText(mContext.getString(booking.getFacility()));
-        bookingTimeTextView.setText(mContext.getString(booking.getbookingTime()));
+        //bookingTimeTextView.setText(mContext.getString(booking.getbookingTime()));
 
         return convertView;
     }

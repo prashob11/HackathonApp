@@ -57,4 +57,13 @@ public class MainMenu extends AppCompatActivity {
 
     }
 
+    public void goToFeelinglucky(View view){
+
+        Intent intent = new Intent(MainMenu.this, Feelinglucky.class);
+        intent.putExtra("UserEmail",email);
+
+        startActivity(intent);
+
+    }
+
 }

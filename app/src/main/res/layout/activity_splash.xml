@@ -12,23 +12,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Zoomen"
         android:textColor="#000"
         android:textSize="15sp" />
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="470dp"
+        android:background="?attr/colorPrimary"
+        android:onClick="gotoLogin"
         android:paddingVertical="@dimen/cardview_default_elevation"
         android:scaleType="center"
-        android:onClick="gotoLogin"
-        android:src="@drawable/logo" />
+        android:src="@drawable/logo2" />
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="345dp"
         android:layout_height="wrap_content"
-        android:text="Welcome To Atlantic Lottery System"
+        android:text="Play .. Win .. Repeat"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
         android:textColor="@android:color/white" />

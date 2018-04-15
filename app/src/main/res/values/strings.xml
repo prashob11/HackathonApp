@@ -1,24 +1,24 @@
 <resources>
-    <string name="app_name">ALC Ticket System</string>
+    <string name="app_name">Atlantic Lottary App</string>
     <string name="swap_request">Do you want to send message along with request for swap?</string>
     <string name="swap_heading">Selected slot is full!</string>
-    <string name="contact_request">Thank you for contacting management?</string>
-    <string name="contact_heading">Contact Management</string>
-    <string name="emailerror">Enter Valid Email</string>
-    <string name="passworderror">Enter Some Password</string>
-    <string name="fnameerror">Enter a valid first name</string>
-    <string name="lnameerror">Enter a valid last name</string>
-    <string name="Kitchen">Kitchen</string>
-    <string name="Bathroom">Bath Room</string>
-    <string name="Gym">Gym</string>
+    <string name="contact_request">Thank you for contacting ALC?</string>
+    <string name="contact_heading">Contact ALC</string>
+    <string name="emailerror">Please enter a valid Email</string>
+    <string name="passworderror">Please enter a valid password</string>
+    <string name="fnameerror">Please enter a valid first name</string>
+    <string name="lnameerror">Please enter a valid last name</string>
+    <string name="LottoMax">Lotto Max</string>
+    <string name="Bingo">Bingo</string>
+    <string name="Lotto">Lotto 649</string>
     <string name="CommonRoom">Common Room</string>
     <string name="StudyRoom">Study Room</string>
     <string name="PlayRoom">Play Room</string>
     <string name="Washer">Washer</string>
     <string name="Dryer">Dryer</string>
-    <string name="string_6AM7AM">6:00 AM - 7:00AM</string>
-    <string name="string_7AM8AM">7:00 AM - 8:00AM</string>
-    <string name="string_8AM9AM">8:00 AM - 9:00AM</string>
+    <string name="date1">20180401</string>
+    <string name="date2">20180420</string>
+    <string name="date3">20180425</string>
     <string name="string_9AM10AM">9:00 AM - 10:00AM</string>
     <string name="string_10AM11AM">10:00 AM - 11:00AM</string>
     <string name="string_11AM12PM">11:00 AM - 12:00PM</string>
@@ -35,6 +35,6 @@
     <string name="string_10PM11PM">10:00 PM - 11:00PM</string>
     <string name="string_11PM12AM">11:00 PM - 12:00AM</string>
     <string name="management_ack">Message Sent!</string>
-    <string name="management_ackbody">We Shall get back to you shortly using your contact number on file </string>
+    <string name="management_ackbody">We will get back to you shortly</string>
     <string name="management_thanks">Thank You!</string>
 </resources>

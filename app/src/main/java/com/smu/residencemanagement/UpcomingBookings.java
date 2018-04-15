@@ -37,19 +37,19 @@ public class UpcomingBookings extends AppCompatActivity {
     private Map<String, Integer> createMap() {
         Map<String, Integer> result = new HashMap<>();
 
-        result.put("KITCHEN", R.string.Kitchen);
-        result.put("BATHROOM", R.string.Bathroom);
-        result.put("DRYER", R.string.Dryer);
-        result.put("GYM", R.string.Gym);
+        result.put("Bingo", R.string.Bingo);
+        result.put("Lotto MAX", R.string.LottoMax);
+        result.put("Lotto", R.string.Lotto);
+  //      result.put("GYM", R.string.Gym);
         result.put("COMMONROOM", R.string.CommonRoom);
         result.put("PLAYROOM", R.string.PlayRoom);
         result.put("STUDYROOM", R.string.StudyRoom);
         result.put("WASHER", R.string.Washer);
 
 
-        result.put("button6AM7AM", R.string.string_6AM7AM);
-        result.put("button7AM8AM", R.string.string_7AM8AM);
-        result.put("button8AM9AM", R.string.string_8AM9AM);
+        result.put("2018-04-01", R.string.date1);
+        result.put("2018-04-20", R.string.date2);
+        result.put("2018-04-25", R.string.date3);
         result.put("button9AM10AM", R.string.string_9AM10AM);
         result.put("button10AM11AM", R.string.string_10AM11AM);
         result.put("button11AM12PM", R.string.string_11AM12PM);
@@ -109,14 +109,27 @@ public class UpcomingBookings extends AppCompatActivity {
 
                 progressDialog.dismiss();
                 Log.d("Response from server:",  httpResponseMsg.toString());
-                Pattern pattern = Pattern.compile("(\"button\\d+(?:AM|PM)\\d+(?:AM|PM)\",\"[A-z]+\")");
+              //  Pattern pattern = Pattern.compile("(\"[A-z\\s]+\")");
+                Pattern pattern = Pattern.compile("([A-z\\s]+\",\"\\d+-\\d+-\\d+)");
                 Matcher matcher = pattern.matcher(httpResponseMsg.toString());
 
                 while (matcher.find()) {
+                    Log.d("",matcher.group());
 
+//                    if(!matcher.group().equals("\"data\"")){
+//                        Log.d("","Hello"+"\"data\"");
+//                     //   Log.d("",matcher.group());
+//                        keyValue = matcher.group().replace("\"","");
+//                        bookings.add(new Bookings(getMyStringResource(keyValue)));
+//                    }
                     keyValue = matcher.group().replace("\"","").split(",");
+                    //if(matcher.group().equals( "\"data\"")){
+                       // Log.d("",test);
+                    //}
+                    Log.d("",keyValue[0]);
+                    Log.d("",keyValue[1]);
 
-                  bookings.add(new Bookings(getMyStringResource(keyValue[0]),getMyStringResource(keyValue[1])));
+                    bookings.add(new Bookings(getMyStringResource(keyValue[0]),getMyStringResource(keyValue[1])));
 
                 }
 

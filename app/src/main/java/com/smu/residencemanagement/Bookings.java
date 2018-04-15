@@ -5,7 +5,7 @@ public class Bookings {
     private final int facility;
     private final int bookingTime;
 
-    public Bookings(int facility, int bookingTime) {
+    public Bookings(int facility,int bookingTime) {
         this.facility = facility;
         this.bookingTime = bookingTime;
     }
@@ -15,7 +15,7 @@ public class Bookings {
     }
 
     public int getbookingTime() {
-        return bookingTime;
+       return bookingTime;
     }
 
 }
